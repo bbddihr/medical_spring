@@ -58,13 +58,13 @@ public class FrontController {
 		mv.addObject("gender",request.getParameter("gender"));
 		mv.addObject("hobby",hobbys);
 //		mv.addObject("hobbys",request.getParameterValues("hobby"));
-		
+		mv.setViewName("doMember"); 
 		return mv;
 		
 		
 	}
 		@RequestMapping("/memUpdate") //회원정보수정
-		public String memUpdate(HttpServletRequest request) {
+		public ModelAndView memUpdate(HttpServletRequest request) {
 			
 			String[] hobby =request.getParameterValues("hobby");
 			String hobbys = ""; //game,golf,run,swim,book
@@ -72,11 +72,10 @@ public class FrontController {
 				if(i==0) hobbys += ""+hobby[i];
 				else hobbys += ","+hobby[i];
 			}
-			System.out.println("hobby:  " +Arrays.toString(hobby));
+			System.out.println("hobby:  " +hobby);
 			
 			
 			ModelAndView mv = new ModelAndView();
-			mv.setViewName("doMember");  //파일이름
 			mv.addObject("id",request.getParameter("id"));
 			mv.addObject("pw",request.getParameter("pw"));
 			mv.addObject("name",request.getParameter("name"));
@@ -87,7 +86,7 @@ public class FrontController {
 			
 			
 			
-			return "memUpdate";
+			return mv;
 		}
 	
 	
